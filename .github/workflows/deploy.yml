@@ -22,7 +22,7 @@ jobs:
 
       - name: Отправка образа в Docker Hub
         run: |
-          docker tag my-app:${{ github.sha }} mydockerhubusername/my-app:${{ github.sha }}
+          docker tag my-go-app:${{ github.sha }} mydockerhubusername/my-go-app:${{ github.sha }}
           docker push mydockerhubusername/my-go-app:${{ github.sha }}
 
   deploy:
@@ -37,4 +37,4 @@ jobs:
       - name: Деплой в Kubernetes
         run: |
           echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig.yaml
-          kubectl --kubeconfig=kubeconfig.yaml set image deployment/my-go-app my-go-app=mydockerhubusername/my-app:${{ github.sha }}
+          kubectl --kubeconfig=kubeconfig.yaml set image deployment/my-go-app my-go-app=mydockerhubusername/my-go-app:${{ github.sha }}
