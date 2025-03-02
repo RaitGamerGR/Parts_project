@@ -1,0 +1,12 @@
+# Golang
+/bin/
+/pkg/
+vendor/
+
+# IDE
+.idea/
+.vscode/
+
+# Docker
+*.log
+docker-compose.override.yml
