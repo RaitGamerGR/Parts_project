@@ -22,7 +22,7 @@ jobs:
 
       - name: Отправка образа в Docker Hub
         run: |
-          docker tag my-go-app:${{ github.sha }} mydockerhubusername/my-go-app:${{ github.sha }}
+          docker tag my-go-app:${{ github.sha }} raitgamergr/my-go-app:${{ github.sha }}
           docker push raitgamergr/my-go-app:${{ github.sha }}
 
   deploy:
