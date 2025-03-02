@@ -2,7 +2,7 @@
 FROM golang:1.24 AS builder
 WORKDIR /app
 COPY . .
-RUN go build -o my-app ./cmd/main.go
+RUN go build -o my-go-app ./cmd/main.go
 
 # Финальный образ
 FROM alpine:latest
