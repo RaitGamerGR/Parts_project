@@ -18,12 +18,12 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Сборка Docker-образа
-        run: docker build -t my-app:${{ github.sha }} .
+        run: docker build -t my-go-app:${{ github.sha }} .
 
       - name: Отправка образа в Docker Hub
         run: |
           docker tag my-app:${{ github.sha }} mydockerhubusername/my-app:${{ github.sha }}
-          docker push mydockerhubusername/my-app:${{ github.sha }}
+          docker push mydockerhubusername/my-go-app:${{ github.sha }}
 
   deploy:
     name: Deploy to Kubernetes
@@ -37,4 +37,4 @@ jobs:
       - name: Деплой в Kubernetes
         run: |
           echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig.yaml
-          kubectl --kubeconfig=kubeconfig.yaml set image deployment/my-app my-app=mydockerhubusername/my-app:${{ github.sha }}
+          kubectl --kubeconfig=kubeconfig.yaml set image deployment/my-go-app my-go-app=mydockerhubusername/my-app:${{ github.sha }}
